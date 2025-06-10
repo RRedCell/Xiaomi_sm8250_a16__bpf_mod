@@ -420,7 +420,7 @@ jobs:
               GIT_COMMIT_SHORT=$(git rev-parse --short=13 HEAD)
               echo "🔧 使用默认版本"
               sed -i "s/-dirty/-${GIT_COMMIT_SHORT}-${DEVICE}/g" scripts/setlocalversion
-              sed -i "s/echo \"\$res\"/echo \"-${GIT_COMMIT_SHORT}-${DEVICE}\"/g" "$KERNEL_SOURCE/scripts/setlocalversion"
+              sed -i "s/echo \"\$res\"/echo \"-perf-${GIT_COMMIT_SHORT}-${DEVICE}\"/g" "$KERNEL_SOURCE/scripts/setlocalversion"
           fi
 
           FULL_VERSION="$VERSION"
