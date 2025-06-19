@@ -535,6 +535,10 @@ jobs:
 
     - name: 📝 Preparing files for release (准备发布文件)
       run: |
+        if [[ $ {github.event.inputs.build_type} == DEV ]];then
+           echo "测试版内核，不上传release"
+           exit 1
+        fi
         mkdir -p release
         cd /home/runner/work/lmi_a15_mod/lmi_a15_mod/out
         device_list=()
