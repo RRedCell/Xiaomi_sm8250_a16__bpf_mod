@@ -13,6 +13,7 @@ on:
         default: 'lmi'
         options:
           - 'lmi'
+          - 'cas'
       compiled_system:
         description: 'Applicable systems (适用系统)'
         required: true
@@ -536,12 +537,6 @@ jobs:
     permissions:
       contents: write
     steps:
-      run: |
-        if [[ $ {github.event.inputs.build_type} == DEV ]];then
-           echo "测试版内核，不上传release"
-           exit 0
-        fi
-
     - name: 📥 Download all zip artifacts (下载所有 zip 构建产物)
       uses: actions/download-artifact@v4
       with:
@@ -549,6 +544,10 @@ jobs:
 
     - name: 📝 Preparing files for release (准备发布文件)
       run: |
+        if [[ $ {github.event.inputs.build_type} == DEV ]];then
+           echo "测试版内核，不上传release"
+           exit 0
+        fi
         mkdir -p release
         cd /home/runner/work/lmi_a15_mod/lmi_a15_mod/out
         device_list=()
