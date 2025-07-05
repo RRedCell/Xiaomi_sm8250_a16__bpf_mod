@@ -10,10 +10,13 @@ on:
         description: 'target device (目标设备)'
         required: true
         type: choice
-        default: 'lmi'
+        default: 'umi'
         options:
+          - 'umi'
+          - 'cmi'
           - 'lmi'
           - 'cas'
+          - 'apollo'
       compiled_system:
         description: 'Applicable systems (适用系统)'
         required: true
